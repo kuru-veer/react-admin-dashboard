@@ -6,11 +6,13 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "public"),
         filename: "main.js",
+        publicPath: '/'
     },
 
     target: "web",
     devServer: {
-        port: "3000",
+        port: "3010",
+        historyApiFallback: true,
         static: ["./public"],
         open: true,
         hot: true,
@@ -34,9 +36,16 @@ module.exports = {
                         loader: 'css-loader', options: { importLoaders: 1 }
                     },
                     'postcss-loader',
-
-
                 ],
+            },
+
+            {
+                test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+                type: 'assets/*',
+            },
+            {
+                test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+                type: 'assets/*',
             },
         ],
     },
